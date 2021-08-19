@@ -9,8 +9,8 @@ const expressServer = app.listen(port, () => {console.log('Webserver listening o
 
 //adding basic http endpoints
 app.get('/', (req, res) => {res.sendFile(path.join(__dirname, "index.html"));});
-app.get('/index.html', (req, res) => {res.sendFile(path.join(__dirname, "index.html"));});
-app.get('/styles.css', (req, res) => {res.sendFile(path.join(__dirname, "styles.css"));});
 
-//static files
-app.use('/assets', express.static(path.join(__dirname, "assets")));
+//just return everything else. I don't care.
+app.use('*', (req, res) => {
+	res.sendFile(path.join(__dirname, "/", req.baseUrl));
+});
